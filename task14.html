@@ -20,22 +20,15 @@
         ["西安", 100]
     ];
     (function (){
-        function $(id){
-            return document.getElementById(id);
+       var sortCount=aqiData.filter(function(item){ return item[1]>60;});
+        function compare(value1,value2){
+            return value2[1]-value1[1];
         }
-        function createLi(content){
-            var li=document.createElement("li");
-            var text=document.createTextNode(content);
-            li.appendChild(text);
-            $("aqi-list").appendChild(li);
+        sortCount.sort(compare);
+        var aqiList=document.getElementById("aqi-list");
+        for(var i=0;i<sortCount.length;i++){
+            aqiList.innerHTML+='<li>第'+(i+1)+'名:'+sortCount[i][0]+'(样例) , '+sortCount[i][1]+'</li>';
         }
-        for(var i=0;i<aqiData.length;i++)
-        {
-            if (aqiData[i][1]>60){
-                createLi(aqiData[i]);
-            }
-        }
-
     })();
 </script>
 </html>
