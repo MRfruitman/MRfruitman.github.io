@@ -8,11 +8,11 @@ function addAqiData(){
     var city = cityInput.value.trim();
     var aqi=aqiInput.value.trim();
     if (!city.match(/^[A-Za-z\u4e00-\u9fa5]+$/)){
-        alert("城市名必须为中英文字符！")
+        alert("城市名必须为中英文字符！");
         return;
     }
     if (!aqi.match(/^\d+$/)){
-        alert("空气质量必须是整数")
+        alert("空气质量必须是整数");
         return;
     }
     aqiData[city]=aqi;
@@ -33,7 +33,7 @@ function delBtnHandle(city){
         renderAqiList();
 }
 function init(){
-    document.getElementById("add-btn").addEventListener("click",addBtnHandle)
+    document.getElementById("add-btn").addEventListener("click",addBtnHandle);
     document.getElementById("aqi-table").addEventListener("click",function(event){
         if(event.target.nodeName.toLowerCase()==='button') delBtnHandle.call(null,event.target.dataset.city);
     })

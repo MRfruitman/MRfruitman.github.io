@@ -32,6 +32,7 @@ li{
     justify-content: center;
     align-items: center;
     transition: all .5s ease;
+    cursor: pointer;
 }
 li:hover{
     background-color: #8a92f4;
