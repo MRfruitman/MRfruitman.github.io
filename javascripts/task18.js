@@ -6,9 +6,14 @@ function $(id){
 }
 function leftInput(){
     var left=document.createElement("div");
-    var a=$("input").value;
-    left.innerHTML=a;
-    $("clear").insertBefore(left,$("clear").firstElementChild);
+    var b=$("input").value.trim();
+    if (!b.match(/^\d+$/)){
+        alert("请输入数字!");
+    }else {
+        var a=$("input").value;
+        left.innerHTML=a;
+        $("clear").insertBefore(left,$("clear").firstElementChild);
+    }
 }
 function  rightInput(){
     var right=document.createElement("div");
