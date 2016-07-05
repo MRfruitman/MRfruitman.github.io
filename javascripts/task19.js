@@ -23,13 +23,12 @@
         addHandler(bubbleBtn, "click", function() {
             bubbleSort(queue);
         });
-        //addHandler(selectionBtn, "click", function() {
-        //    slectionSort(queue);
-        //});
-        //addHandler(insertionBtn, "click", function() {
-        //    insertionSort(queue);
-        //});
-
+        addHandler(selectionBtn, "click", function() {
+            slectionSort(queue);
+        });
+        addHandler(insertionBtn, "click", function() {
+            insertSort(queue);
+        });
         init(queue, lin);
     }
 )();
@@ -134,8 +133,62 @@ function  bubbleSort(queue){
             swap(eles[j],eles[j+1]);
         }
         j++;
-    },delay);
+    },delay);}
+function insertSort(queue){
+    var eles = queue.querySelectorAll("li"),
+        len  = eles.length,
+        temp, i = 1, j = 0, timer, delay = 100, outer = true, inner = false;
+
+    timer = setInterval(function() {
+        if(outer) {
+            if(i == len) {
+                clearInterval(timer);
+                return ;
+            }
+            if(eles[i].offsetHeight < eles[i-1].offsetHeight) {
+                temp = eles[i].offsetHeight;
+                j = i - 1;
+                outer = false;
+                inner = true;
+            } else {
+                i++;
+            }
+        }
+        if(inner) {
+            if(j < 0 || eles[j].offsetHeight < temp) {
+                eles[j+1].style.height = temp + "px";
+                eles[j+1].offsetHeight = temp;
+                i++;
+                inner = false;
+                outer = true;
+            } else {
+                eles[j+1].style.height = eles[j].style.height;
+                eles[j+1].offsetHeight = eles[j].offsetHeight;
+                j--;
+            }
+        }
+    }, delay);
 }
+function slectionSort(queue) {
+    var eles = queue.querySelectorAll("li"),
+        len  = eles.length, i = 0, j = 1, min = 0, delay = 50, timer;
+
+    timer = setInterval(function() {
+        if(i == len - 1) {
+            clearInterval(timer);
+        }
+        if(j == len) {
+            swap(eles[i], eles[min]);
+            ++i;
+            min = i;
+            j = i + 1;
+        }
+        if(eles[j] && eles[j].offsetHeight < eles[min].offsetHeight) {
+            min = j;
+        }
+        ++j;
+    }, delay);
+};
 
 
 
