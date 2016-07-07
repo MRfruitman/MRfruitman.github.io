@@ -188,7 +188,7 @@ function slectionSort(queue) {
         }
         ++j;
     }, delay);
-};
+}
 
 
 

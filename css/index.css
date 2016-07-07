@@ -1,6 +1,9 @@
+body{
+    background-color: #78a369;
+}
 .top{
-    background-color: black;
-    color: white;
+    background-color: #975ee8;
+    color: #ffc486;
     height:100px;
     width: 1280px;
 }
@@ -24,7 +27,6 @@ ul{
 }
 li{
     box-sizing: border-box;
-    padding: 10px;
     height: 70px;
     width: 25%;
     color: black;
