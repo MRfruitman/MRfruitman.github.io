@@ -14,8 +14,7 @@ menu, nav, section, summary, time, mark, audio, video {
   vertical-align:baseline;
   background:transparent;
 }
-<<<<<<< HEAD
-=======
+
 input{
   border: 0px;
 }
@@ -25,4 +24,3 @@ ul{
 a{
   text-decoration: none;
 }
->>>>>>> gh-pages
