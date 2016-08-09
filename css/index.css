@@ -1,24 +1,4 @@
-.top{
-    background-color: #975ee8;
-    color: #ffc486;
-    height:100px;
-    width: 1280px;
-}
-.top h1{
-    font-size: 40px;
-    text-align: center;
-    padding-top: 30px;
-}
-div{
-    width: 1280px;
-}
-div h1{
-    text-align: center;
-    font-size: 35px;
-    padding: 10px 0;
-}
 ul{
-    width: 1280px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -32,10 +12,15 @@ li{
     align-items: center;
     transition: all .5s ease;
     cursor: pointer;
+    border-radius: 20px;
 }
 li:hover{
     background-color: #8a92f4;
 }
 li:hover a{
     color: white;
+}
+@media screen and (max-width: 64em)and (min-width: 42em){ .add{
+width: 50%;
+}
 }
