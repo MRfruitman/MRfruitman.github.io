@@ -8,16 +8,6 @@
     var onAnimate = false;
     var clickSearch = false;
 
-    //事件的兼容函数
-    //function addEvent(element, type, handler){
-    //    if (element.addEventListener){
-    //        element.addEventListener(type, handler, false);
-    //    } else if (element.attachEvent){
-    //        element.attachEvent("on" + type, handler);
-    //    } else {
-    //        element["on" + type] = handler;
-    //    }
-    //}
     function addEvent(element,type,handler){
         if (element.addEventListener){
             element.addEventListener(type,handler,false);
@@ -28,16 +18,6 @@
         }
     }
 
-    //清空所有背景颜色
-    //function clearBgColor(){
-    //    root.style.backgroundColor = "white";
-    //    var elements = root.getElementsByTagName("div");
-    //
-    //    for(var i= 0, len=elements.length; i<len; i++){
-    //        elements[i].style.backgroundColor = "white";
-    //    }
-    //}
-
     function clearBgColor(){
         root.style.backgroundColor="white";
         var divs=root.getElementsByTagName("div");
@@ -45,16 +25,6 @@
             divs[i].style.backgroundColor="white";
         }
     }
-    //遍历函数
-    //function traversal(node){
-    //    var childs = node.children;
-    //    if(childs.length !== 0){
-    //        for(var i= 0, len=childs.length; i<len; i++){
-    //            queue.push(childs[i]);
-    //            traversal(childs[i]);
-    //        }
-    //    }
-    //}
     function traversal(node){
         var childs=node.children;
         if (childs.length!=0){
@@ -87,7 +57,6 @@
 
         timer = setInterval(function(){
             if(i < len-1){
-
                 if(!(queue[i].style.backgroundColor === "green")){
                     queue[i].style.backgroundColor = "white";
                 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>JavaScript和树（二）</title>
+    <title>任务二十三：JavaScript和树（二）</title>
     <style>
         body{
             width: 70%;
@@ -11,11 +11,10 @@
         div{
             padding: 10px;
             border: 1px solid black;
-            display:flex;
-            flex-wrap: wrap;
-            align-items: center;
+            float: left;
             margin: 10px;
             background-color: white;
+            cursor: pointer;
         }
         #btn{
             border: none;
@@ -53,10 +52,13 @@
     <div>Fish</div>
 </div>
 <div id="btn">
-    <input id="traversal" type="button" value="遍历">
+    <input id="traversal" type="button" value="遍历"/>
     <input id="searchInput" type="text" />
-    <input id="search" type="button" value="查询">
+    <input id="search" type="button" value="查询"/>
+    <input id="delete" type="button" value="删除节点"/>
+    <textarea id="addInput" placeholder="输入所要添加的节点"></textarea>
+    <input id="add" type="button" value="添加节点"/>
 </div>
-<script src="javascripts/task23.js"></script>
+<script src="javascripts/task24.js"></script>
 </body>
 </html>
