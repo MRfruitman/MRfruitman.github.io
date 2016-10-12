@@ -84,7 +84,7 @@
                 clickSearch = false;
 
                 if(!found && clickSearch){
-                    alert("没有找到啊！")
+                    alert("没有找到啊！");
                 }
             }
         }, 500);
@@ -93,8 +93,9 @@
     //选择,删除，添加节点
     function checkNode(event){
         if(onAnimate){
-            alert("停不下来了！")
+            alert("停不下来了！");
             return;
+
         }
 
         var ev = event || window.event;

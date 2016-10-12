@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #father{
+            margin-top: 200px;
+        }
+        #input{
+            width: 350px;
+            height: 40px;
+            border: 1px solid silver;
+            border-radius: 10px;
+        }
+        #button{
+            width: 80px;
+            height: 40px;
+            border:1px solid silver;
+            border-radius: 10px;
+            background-color: #cb9bff;
+            color: white;
+            font-size: 20px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+        #pid{
+            color: #7df6eb;
+            font-size: 20px;
+            font-family:宋体;
+        }
+    </style>
+</head>
+<body>
+<div id="father">
+<input type="text" id="input">
+<button id="button">验证</button>
+<P id="pid">请输入4-16位字符</P>
+</div>
+</body>
+<script src="javascripts/until.js"></script>
+<script type="text/javascript">
+    var text=document.getElementById("input"),
+        btn=document.getElementById("button"),
+        part=document.getElementById("pid");
+    addHandler(btn,"click",verification);
+function verification(){
+    var inputValue=text.value;
+    if (countLength(inputValue)==0){
+        part.innerHTML="不能为空";
+        part.style.color="red";
+    }else if(countLength(inputValue)>=4&&countLength(inputValue)<=16){
+        part.innerHTML="格式正确";
+        part.style.color="blue";
+    } else {
+        part.innerHTML = '请输入长度为4~16位字符';
+        part.style.color = 'red';
+    }
+}
+function countLength(str){
+    var inputLength=0;
+    for (var i=0;i<str.length;i++){
+        var countCode=str.charCodeAt(i);
+        if (countCode>=0 && countCode<=128){
+            inputLength+=1;
+        }else {
+            inputLength+=2;
+        }
+    }
+    return inputLength;
+}
+</script>
+</html>
