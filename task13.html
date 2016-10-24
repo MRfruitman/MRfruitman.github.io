@@ -9,7 +9,7 @@
 <button id="button">确认填写</button>
 
 <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
-
+<script type="text/javascript" src="javascripts/until.js"></script>
 <script type="text/javascript">
     (function (){
         function $(id){
@@ -31,14 +31,15 @@
                alert($("aqi-input").value+'不是有效整数');
            }
     }
-        $("button").onclick=function (){
-            handler();
-        };
-        $("aqi-input").onkeyup=function (event){
-            if (event.keyCode==13){
-                handler();
-            }
-        }
+//        $("button").onclick=function (){
+//            handler();
+//        };
+//        $("aqi-input").onkeyup=function (event){
+//            if (event.keyCode==13){
+//                handler();
+//            }
+//        }
+        addHandler($("button"),"click",)
     })();
 </script>
 </body>
