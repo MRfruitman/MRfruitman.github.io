@@ -133,7 +133,8 @@ function  bubbleSort(queue){
             swap(eles[j],eles[j+1]);
         }
         j++;
-    },delay);}
+    },delay);
+}
 function insertSort(queue){
     var eles = queue.querySelectorAll("li"),
         len  = eles.length,

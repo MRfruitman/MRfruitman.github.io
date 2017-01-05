@@ -5,53 +5,58 @@
     <title>实践题 - 选项卡</title>
     <style type="text/css">
         *{padding:0px;margin: 0px;font:12px normal "microsoft yahei";}
-        #tabs {width:290px;
+        #tabs {width:360px;
             padding:5px;
             height:150px;
-            margin:20px;}
-        #tabs ul{list-style:none;
-            display: block;
-            height:30px;
-            line-height:30px;
-            border-bottom:2px saddlebrown solid;}
-        #tabs ul li{background:#fff;
-            cursor:pointer;
-            float:left;
-            list-style:none;
-            height:28px;
-            line-height:28px;
-            margin:0px 3px;
-            border:1px solid #aaaaaa;
-            border-bottom:none;
-            display:inline-block;
-            width:60px;
-            text-align: center;}
-        #tabs ul li.on{border-top:2px solid saddlebrown;
-            border-bottom: 2px solid #fff;}
-        #tabs div{height:120px;
-            line-height: 25px;
-            border:1px solid #336699;
-            border-top:none;
-            padding:5px;}
+            margin:0 auto;
+            margin-top:100px;}
         .hide{display: none;
+        }
+        ul{
+            list-style: none;
+            height: 30px;
+            border-bottom: 2px saddlebrown solid;
+            width: 350px;
+        }
+        li{
+            float: left;
+            height: 28px;
+            line-height: 28px;
+            border: 1px solid #aaaaaa;
+            width: 60px;
+            text-align: center;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        #tabs div{
+            border: 1px solid saddlebrown;
+            border-top: none ;
+            width: 348px;
+            height: 100px;
+            padding-top:18px;
+            text-align: center;
+        }
+        .on{
+            border-top: 2px solid saddlebrown;
+            border-bottom: 2px solid #FFFFFF;
         }
     </style>
     <script type="text/javascript">
          window.onload = function(){
-             var oTab = document.getElementById("tabs");
-             var oUl = oTab.getElementsByTagName("ul")[0];
-             var oLis = oUl.getElementsByTagName("li");
-             var oDivs= oTab.getElementsByTagName("div");
-             for(var i= 0,len = oLis.length;i<len;i++){
-                 oLis[i].index = i;
-                 oLis[i].onclick = function() {
-                     for(var n= 0;n<len;n++){
-                         oLis[n].className = "";
-                         oDivs[n].className = "hide";
+             var Li=document.getElementsByTagName("li");
+             var FDiv=document.getElementById("tabs");
+             var Tab=FDiv.getElementsByTagName("div");
+             for(var i= 0,len=Li.length;i<len;i++) {
+                 Li[i].onclick =function (m){
+                     return function (){
+                         for (var n = 0; n < len; n++) {
+                             Li[n].className = "";
+                             Tab[n].className = "hide";
+                         }
+                         Li[m].className = "on";
+                         Tab[m].className = "";
                      }
-                     this.className = "on";
-                     oDivs[this.index].className = "";
-                 }
+                 }(i);
              }
          }
     </script>
@@ -82,7 +87,6 @@
         西3环通透2居290万 130万2居限量抢购<br>
         黄城根小学学区仅260万 121平70万抛!<br>
         独家别墅280万 苏州桥2居优惠价248万<br>
-
     </div>
 </div>
 

@@ -25,45 +25,77 @@
 </ul>
 
 <button id="sort-btn">排序</button>
+<script src="javascripts/until.js"></script>
 <script type="text/javascript">
     function $(id){
         return document.getElementById(id);
     }
     var data=[];
-    function getData(){
+//    function getData(){
+//        var items=$("source").getElementsByTagName("li");
+//        for (var i=0;i<items.length;i++){
+//            var city = items[i].firstChild.nodeValue;
+//            var num = items[i].childNodes[1].innerHTML;
+//            data[i]=[];
+//            data[i].push(city);
+//            data[i].push(num);
+//        }
+//        return data;
+//    }
+//    function sortAqiData(data){
+//        data.sort(function(a,b){
+//            return a[1]-b[1];
+//        });
+//        return data;
+//    }
+//    function render(data){
+//        var ul=$("source");
+//        var ulOne=$("resort");
+//        for(var i=0;i<data.length;i++)
+//        {
+//            ulOne.innerHTML+='<li>第'+(i+1)+'名:'+data[i][0]+data[i][1]+'</li>';
+//        }
+//    }
+//    function btnHandle() {
+//        var aqiData = getData();
+//        aqiData = sortAqiData(aqiData);
+//        render(aqiData);
+//    }
+//    function  init(){
+//        $("sort-btn").onclick=btnHandle;
+//    }
+//    init();
+    function getDate(){
         var items=$("source").getElementsByTagName("li");
-        for (var i=0;i<items.length;i++){
-            var city = items[i].firstChild.nodeValue;
-            var num = items[i].childNodes[1].innerHTML;
+        for (var i= 0,len=items.length;i<len;i++){
+            var city=items[i].firstChild.nodeValue;
+            var num=items[i].childNodes[1].innerHTML;
             data[i]=[];
             data[i].push(city);
             data[i].push(num);
         }
         return data;
     }
-    function sortAqiData(data){
+    function resort(data){
         data.sort(function(a,b){
             return a[1]-b[1];
         });
         return data;
     }
-    function render(data){
-        var ul=$("source");
-        var ulOne=$("resort");
-        for(var i=0;i<data.length;i++)
-        {
-            ulOne.innerHTML+='<li>第'+(i+1)+'名:'+data[i][0]+data[i][1]+'</li>';
+    function reder(data){
+        var ul=$("resort");
+        for (var i=0;i<data.length;i++){
+            var li=document.createElement("li");
+            li.innerHTML="第"+(i+1)+"名"+data[i][0]+data[i][1];
+            ul.appendChild(li);
         }
     }
-    function btnHandle() {
-        var aqiData = getData();
-        aqiData = sortAqiData(aqiData);
-        render(aqiData);
+    function handle(){
+        var adDate=getDate();
+        adDate=resort(adDate);
+        reder(adDate);
     }
-    function  init(){
-        $("sort-btn").onclick=btnHandle;
-    }
-    init();
+    addHandler( $("sort-btn"),"click",handle);
 </script>
 </body>
 </html>

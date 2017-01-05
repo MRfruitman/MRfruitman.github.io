@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算器</title>
+    <style>
+        body{font-family:sans-serif;}
+        body{background-color:  #2288cc;}
+        #wholeArea{
+            position: relative;
+            background-color:#333;
+            width: 300px;
+            height: 460px;
+        }
+        #display{
+            position: absolute;
+            background-color:#ddd;
+            margin-top:-15px;
+            width:100%;
+            height:33%;
+            cursor: move;
+            top: 3.5%;
+        }
+        #num1,#symbol{
+            color:#444;
+            font-size: 150%;
+        }
+        .large{
+            color: blue;
+            font-size: 300%;
+        }
+        .small{
+            color: blue;
+            font-size: 180%;
+        }
+        #input{
+            position: absolute;
+            height: 67%;
+            width: 300px;
+            color: #FFFFFF;
+            top: 33%;
+        }
+        td{
+            text-align: center;
+            width: 25%;
+            background-color: #888;
+        }
+        td:hover{
+            background-color: #3ca0cf;
+            cursor: pointer;
+        }
+        #txt{
+            text-align: right;
+            bottom:10px;
+        }
+        span{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="wholeArea">
+    <div id="display"><p id="txt"><span id="num1"></span><span id="symbol"></span><span id="result" class="large"></span></p></div>
+    <table id="input">
+        <tr>
+            <td>AC</td>
+            <td>+/-</td>
+            <td>DEL</td>
+            <td>*</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>/</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>+</td>
+        </tr>
+        <tr>
+            <td colspan="2">0</td>
+            <td>.</td>
+            <td>=</td>
+        </tr>
+    </table>
+</div>
+<script src="javascripts/until.js"></script>
+<script>
+    var num1="",symbol="",result="0";
+    function math(obj){
+        if (result==""){
+            result="0";
+        }
+        if (symbol==""||symbol=="="){
+            num1=result;
+            symbol=obj;
+            result="0";
+        }else{
+            switch (symbol){
+                case "+":num1=parseFloat(num1)+parseFloat(result);break;
+                case "-":num1=parseFloat(num1)-parseFloat(result);break;
+                case "*":num1=parseFloat(num1)*parseFloat(result);break;
+                case "/":num1=parseFloat(num1)/parseFloat(result);break;
+            }
+            symbol=obj;
+            result="0";
+            document.getElementById("symbol").innerHTML=symbol;
+            document.getElementById("num1").innerHTML=num1;
+            document.getElementById("result").innerHTML=result;
+        }
+    }
+    function count() {
+        if (result=="") {
+            result="0";
+        }
+        if(symbol!="="){
+            num1=num1+symbol+result;
+            switch(symbol){
+                case "+":result=parseFloat(num1)+parseFloat(result);break;
+                case "-":result=parseFloat(num1)-parseFloat(result);break;
+                case "*":result=parseFloat(num1)*parseFloat(result);break;
+                case "/":result=parseFloat(num1)/parseFloat(result);break;
+            }
+            symbol="=";
+            document.getElementById("symbol").innerHTML=symbol;
+            document.getElementById("num1").innerHTML=num1;
+            document.getElementById("result").innerHTML=result;
+        }
+    }
+    function inp(obj){
+        switch(obj.innerHTML)
+        {
+            case "AC":num1="";symbol="";result="";break;
+            case "+/-":if(result.indexOf("-")!=-1){result=result.slice(1);}else {result="-"+result;} break;
+            case "DEL":result=result.slice(0,-1);break;
+            case "+":math("+");break;
+            case "-":math("-");break;
+            case "*":math("*");break;
+            case "/":math("/");break;
+            case "=":count();break;
+            case ".":if(result==""){result="0.";}if(result.indexOf(".")!=-1){result=result;}else result=result+obj.innerHTML;break;
+            default:if (result.indexOf("0")!=0){result=result+obj.innerHTML;}else {result=result.slice(1)+obj.innerHTML} break;
+        }
+        document.getElementById("symbol").innerHTML=symbol;
+        document.getElementById("num1").innerHTML=num1;
+        document.getElementById("result").innerHTML=result;
+    }
+    window.onload=function(){
+        var tds=document.getElementsByTagName("td");
+        for(var i=0;i<tds.length;i++){
+            tds[i].setAttribute("onclick","inp(this)");
+        }
+        document.getElementById("result").innerHTML=result;
+       var dragEvent=moveBox();
+        dragEvent.dragStart();
+    };
+    var moveBox=function(){
+        var targetBox=document.getElementById("wholeArea");
+        var dragTarget=null;
+        function drag(event){
+            event=event||window.event;
+            target=getTarget(event);
+            switch (event.type){
+                case "mousedown":if (target.id=="display"){
+                    dragTarget=targetBox;
+                }
+                    break;
+                case "mousemove":if (dragTarget){
+                    sTop=document.documentElement.scrollTopo||document.body.scrollTop;
+                    dragTarget.style.left=event.clientX-target.offsetWidth/2+"px";
+                    dragTarget.style.top=event.clientY+sTop-target.offsetHeight/2+"px";
+                }
+                    break;
+                case "mouseup":dragTarget=null;
+                    break;
+              }
+        }
+        return {
+            dragStart:function(){
+            addHandler(document,"mousedown",drag);
+            addHandler(document,"mousemove",drag);
+            addHandler(document,"mouseup",drag);
+        }
+     }
+    }
+</script>
+</body>
+</html>

@@ -68,15 +68,6 @@ var pageState = {
 var formGraTime = document.getElementById('form-gra-time');
 var citySelect = document.getElementById('city-select');
 var aqiChartWrap = document.getElementsByClassName('aqi-chart-wrap')[0];
-function renderChart() {
-    var color = '',text = '';
-    for (var item in chartData) {
-        color = '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
-        text += '<div title="'+item+":"+chartData[item]+'" style="height:'+chartData[item]+'px; background-color:'+color+'"></div>';
-    }
-    aqiChartWrap.innerHTML = text;
-}
-
 /**
  * 日、周、月的radio事件点击时的处理函数
  */
@@ -118,11 +109,6 @@ function initGraTimeForm() {
     for (var i=0;i<j;i++){
         addEventHandler(pageRadio[i],"click",graTimeChange);
     }
-    //addEventHandler(formGraTime,"click",function(event){
-    //    if (event.target&&event.target.nodeName.toUpperCase()=="INPUT"){
-    //        graTimeChange();
-    //    }
-    //})
 }
 
 /**
@@ -186,7 +172,14 @@ function initAqiChartData() {
         }//逻辑同周，不知道对不对
     }
 }
-
+function renderChart() {
+    var color = '',text = '';
+    for (var item in chartData) {
+        color = '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
+        text += '<div title="'+item+":"+chartData[item]+'" style="height:'+chartData[item]+'px; background-color:'+color+'"></div>';
+    }
+    aqiChartWrap.innerHTML = text;
+}
 /**
  * 初始化函数
  */

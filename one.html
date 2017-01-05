@@ -72,15 +72,15 @@
     var a = navContainer.offsetHeight;
     window.onscroll = function(){
         var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-//        if(scrollTop >= num){
-//            navContainer.className = "nav fixed";
-//            text.style.paddingTop = a +"px";
-//        }else{
-//            navContainer.className = "nav";
-//            text.style.paddingTop = "";
-//        }
-        //当导航与相应文档接触的时候自动切换
-        //method1
+        if(scrollTop >= num){
+            navContainer.className = "nav fixed";
+            text.style.paddingTop = a +"px";
+        }else{
+            navContainer.className = "nav";
+            text.style.paddingTop = "";
+        }
+//        当导航与相应文档接触的时候自动切换
+//        method1
         for(var i=0;i<navBoxChild.length;i++){
             if( scrollTop + a >= textChild[i].offsetTop){
                 for(var j=0;j<navBoxChild.length;j++){
