@@ -3,17 +3,16 @@
  */
 window.onload=function(){
     var menu=document.getElementById("menu");
-    var content=document.getElementsByClassName("content");
-    var link=menu.getElementsByTagName("a");
-    for(i= 0,len=link.length;i<len;i++){
-        link[i].index=i;
-        link[i].onclick=function(){
-            for(var j=0;j<len;j++){
-                link[j].className="";
-                content[j].style.display="none";
-            }
-            link[this.index].className="selected";
-            content[this.index].style.display="block";
-        }
+    var list=menu.getElementsByTagName("a");
+    var str=location.href;
+    var arr=str.split("/");
+    switch (arr[arr.length-1]){
+        case "works":
+            list[1].style.color="yellow";
+            break;
+        case "about":
+            list[2].style.color="yellow";
+            break;
+        default:list[0].style.color="yellow";
     }
 };
