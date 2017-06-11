@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="generator" content="Hugo 0.15" />
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title> 居中的常见实现  </title>
+
+    <link rel="stylesheet" href="https://MRfruitman.github.io/css/home.css">
+    <link rel="stylesheet" href="https://MRfruitman.github.io/css/index.css">
+    <link rel="shortcut icon" href="https://MRfruitman.github.io/images/favicon.png">
+
+</head>
+
+<body class=" article-body">
+<div id="menu">
+    <ul class="navigation">
+        <li><a href="https://MRfruitman.github.io/index.html">Home</a></li>
+        <li><a href="https://MRfruitman.github.io/works/index.html">Works</a></li>
+        <li><a href="https://MRfruitman.github.io/about/index.html">About</a></li>
+    </ul>
+</div>
+<div class="article ">
+    <div >
+        <h1 class="text-center">居中的常见实现</h1>
+        <p >Mon, May 16, 2016</p>
+
+
+        <p>约定HTML结构</p>
+
+<pre><code class="language-HTML">&lt;div &gt;
+    &lt;img src=&quot;&quot;&gt;
+    &lt;/div&gt;
+</code></pre>
+
+        <h2 id="水平居中:903435e3d66e261bf87738ad6f965a5c">水平居中</h2>
+
+        <p>实现水平居中其实并不难，而且有多个可靠地方案可以使用。</p>
+
+        <h4 id="margin方案:903435e3d66e261bf87738ad6f965a5c">margin方案</h4>
+
+        <p>用过bootstrap的人会很熟悉这么一个类名<code>.center-block</code>，这是实现居中的一个类名，具体实现是这样的</p>
+
+<pre><code>.center-block{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    }
+</code></pre>
+
+        <p>这应该是学习页面布局最基本的水平居中方案了，也没什么额外操作</p>
+
+        <h4 id="绝对定位方案:903435e3d66e261bf87738ad6f965a5c">绝对定位方案</h4>
+
+        <p>基本实现是这样的</p>
+
+<pre><code>.center-x-ab{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    }
+</code></pre>
+
+        <p>主要是应用了translate如果值为百分比，则参考于自身。如果为了水平居中而这么做就有点折腾了，然而这一方案可以扩展到垂直居中和水平垂直都居中。这样做的缺点是父元素需要处理子元素绝对定位带来的问题。在实践中，制作h5页面慎用这种方法居中，因为h5页面经常有动画，动画离不开transform,两者同时存在会看到很诡异的问题。</p>
+
+        <h4 id="文本居中方案:903435e3d66e261bf87738ad6f965a5c">文本居中方案</h4>
+
+        <p>需要将要居中元素的父元素设定<code>text-align:center;</code>需要居中的元素的display要设定为<code>inline-block</code>,需要处理文本居中带来的影响，这一方案感觉用的不多。</p>
+
+        <h4 id="flex方案:903435e3d66e261bf87738ad6f965a5c">flex方案</h4>
+
+        <p>1.你为什么不用margin方案的方案</p>
+
+        <p>父元素div <code>display:flex</code> 子元素img<code>margin-left:auto;margin-right:auto;</code>我的评价见小标题</p>
+
+        <p>2.感觉有点大材小用的方案</p>
+
+        <p>父元素div <code>display:flex:justify-content:center;</code>评价如小标题
+            <a href="http://jiangshanmeta.github.io/demo/myWork/mobile/animation/animation_spin.html">上个例子</a></p>
+
+        <h2 id="垂直居中:903435e3d66e261bf87738ad6f965a5c">垂直居中</h2>
+
+        <p>相较于水平居中，垂直居中相比较而言就有点难度了</p>
+
+        <h4 id="单行文字垂直居中:903435e3d66e261bf87738ad6f965a5c">单行文字垂直居中</h4>
+
+        <p>在我刚开始学习写页面的时候，就听说过让<strong>line-height</strong>和<strong>height</strong>值相等即可使单行文字垂直居中，最开始只是从使用的角度看这个问题，没有深入思考过，后来<a href="http://t.imooc.com/learn/403">张鑫旭大神告诉我们</a>，这只是伪垂直居中。从工程实践角度这已经够用了，不要在意这些细节</p>
+
+        <h4 id="绝对定位方案-1:903435e3d66e261bf87738ad6f965a5c">绝对定位方案</h4>
+
+        <p>在水平居中中提到可以使用绝对定位实现水平居中，同样也可以使用绝对定位实现垂直居中</p>
+
+<pre><code>.center-y-ab{
+    position:absolute;
+    left:50%;
+    transform:translateY(-50%);
+    }
+</code></pre>
+
+        <p>虽然要处理绝对定位带来的后果，考虑到垂直居中方案并不多，这不失为一个好方案。</p>
+
+        <h4 id="table方案:903435e3d66e261bf87738ad6f965a5c">table方案</h4>
+
+        <p>请参阅<a href="https://css-tricks.com/centering-in-the-unknown/">这篇文章</a></p>
+
+        <h4 id="flex方案-1:903435e3d66e261bf87738ad6f965a5c">flex方案</h4>
+
+        <p>父元素div <code>display:flex</code> 子元素img<code>margin-top:auto;margin-right:bottom;</code></p>
+
+        <p>当然你也可以折腾flex的相关属性去，说的就是某些关于对其的属性。</p>
+
+        <h2 id="水平垂直都居中:903435e3d66e261bf87738ad6f965a5c">水平垂直都居中</h2>
+
+        <h4 id="绝对定位方案-2:903435e3d66e261bf87738ad6f965a5c">绝对定位方案</h4>
+
+<pre><code>.center-xy-ab{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    }
+</code></pre>
+
+        <p>有代码有真相，就是结合水平、垂直居中的绝对定位方案</p>
+
+        <h4 id="flex方案-2:903435e3d66e261bf87738ad6f965a5c">flex方案</h4>
+
+        <p>父元素<code>display:flex;</code></p>
+
+        <p>子元素<code>margin:auto;</code></p>
+
+        <p>也不用去折腾各种对齐的属性</p>
+
+        <h4 id="水平文本居中-垂直table-的大杂烩:903435e3d66e261bf87738ad6f965a5c">水平文本居中 + 垂直table 的大杂烩</h4>
+
+        <p>如果真考虑兼容性的话，这似乎是兼容性最好的方案了
+            然而，需要多写一层标签</p>
+
+        <p>水平垂直居中算是水平居中和垂直居中的综合使用，上个<a href="http://jiangshanmeta.github.io/demo/myWork/layout/center.html">demo</a></p>
+
+        <h2 id="4-基于视口的居中:903435e3d66e261bf87738ad6f965a5c">4.基于视口的居中</h2>
+
+        <p>常见的各种模态框基本上是相较于视口水平垂直居中的，其实我最早知道模态框的实现的时候它的居中是通过js计算得到的。作为 <em>能用CSS实现的就绝对不用js实现</em> 神教教徒，这个需求肯定要尝试使用CSS解决。</p>
+
+        <h4 id="transform方案:903435e3d66e261bf87738ad6f965a5c">transform方案</h4>
+
+        <p>基本上是上边的绝对定位方案的翻版</p>
+
+<pre><code>position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+
+</code></pre>
+
+
+    </div>
+
+
+</div>
+</body>
+</html>
